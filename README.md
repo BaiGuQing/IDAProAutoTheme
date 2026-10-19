@@ -71,7 +71,8 @@ IDA 9.x 的主题是 CSS，不是注册表里那套老彩蛋：
 
 ```
 src/IDAAutoTheme.py   插件本体（单文件，含 CSS 展开器）
-_probe/check2.py      开发期的语义一致性验证脚本（可删）
+_probe/check2.py      语义一致性验证：自研展开器 vs IDA 原生 QSS
+_probe/check4.py      校验插件是否出现在 Edit > Plugins 菜单
 README.md
 ```
 

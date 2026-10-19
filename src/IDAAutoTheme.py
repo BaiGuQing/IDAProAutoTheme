@@ -419,7 +419,9 @@ def force_refresh():
 # --------------------------------------------------------------------------
 
 class AutoThemePlugin(idaapi.plugin_t):
-    flags = idaapi.PLUGIN_FIX | idaapi.PLUGIN_KEEP | idaapi.PLUGIN_HIDE
+    # NOTE: no PLUGIN_HIDE here - that flag is exactly what keeps a plugin
+    # out of the Edit > Plugins menu, and we want the manual refresh entry.
+    flags = idaapi.PLUGIN_FIX | idaapi.PLUGIN_KEEP
     comment = "Follow the OS light/dark theme"
     help = "Automatically switch IDA's theme when Windows switches light/dark."
     wanted_name = "Auto Theme (follow system)"
