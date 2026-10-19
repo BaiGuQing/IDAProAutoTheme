@@ -69,10 +69,32 @@ That expander is what this plugin implements, and its output is **semantically i
 - Polling reads the registry once a second; the cost is negligible. `WM_SETTINGCHANGE` is deliberately not used because its lParam handling is not reliable across Windows versions.
 - Only Windows + IDA 9.5 has been tested. Linux/macOS paths and platform macros are handled in code but unverified.
 
+## Publishing to the official plugin repository (plugins.hex-rays.com)
+
+**There is no submission form.** Hex-Rays moved to a self-service flow: an indexer scans GitHub daily, finds repositories containing `ida-plugin.json`, reads their releases, and lists them automatically.
+
+Three things are required:
+
+1. A well-formed `ida-plugin.json` in the repo — that is `src/ida-plugin.json` here (`entryPoint` must live next to it, which is why the file sits in `src/` rather than the repo root)
+2. A tag plus a GitHub Release
+3. Time — the indexer runs once a day
+
+Pure-Python plugins can use the source archive GitHub attaches to the release; no separate ZIP is needed.
+
+Validate the metadata (optional, but it saves a failed indexing round):
+
+```bash
+pip install ida-hcli
+hcli plugin lint ./src
+```
+
+If it has not shown up at <https://plugins.hex-rays.com> after a few days, check in this order: metadata validity → whether your repo appears in <https://github.com/HexRaysSA/plugin-repository/blob/v1/plugin-repository.json> → whether GitHub code search finds it (`path:**/ida-plugin.json`) → otherwise add the repo to `known-repositories.txt`, or open an issue.
+
 ## Layout
 
 ```
 src/IDAAutoTheme.py   the plugin (single file, includes the CSS expander)
+src/ida-plugin.json   Plugin Manager metadata (needed to publish)
 _probe/check2.py      verifies the expander against IDA's native QSS
 _probe/check4.py      verifies the plugin shows up under Edit > Plugins
 README.md             Chinese documentation

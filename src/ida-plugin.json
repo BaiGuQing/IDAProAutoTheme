@@ -1,0 +1,35 @@
+{
+  "IDAMetadataDescriptorVersion": 1,
+  "plugin": {
+    "name": "IDAAutoTheme",
+    "version": "1.0.0",
+    "entryPoint": "IDAAutoTheme.py",
+    "idaVersions": [
+      ">=9.0"
+    ],
+    "platforms": [
+      "windows-x86_64"
+    ],
+    "description": "Follows the Windows light/dark app setting and switches IDA's theme at runtime, without restarting IDA. Ships a re-implementation of IDA's theme.css preprocessor (@importtheme / @def / @palette / @ifdef / @lighten / @darken) so QSS and palette are swapped in place.",
+    "categories": [
+      "ui-ux-and-visualization"
+    ],
+    "keywords": [
+      "theme",
+      "dark mode",
+      "light mode",
+      "darkmode",
+      "appearance",
+      "ui"
+    ],
+    "urls": {
+      "repository": "https://github.com/BaiGuQing/IDAProAutoTheme"
+    },
+    "authors": [
+      {
+        "name": "BaiGuQing",
+        "email": "3268983565@qq.com"
+      }
+    ]
+  }
+}

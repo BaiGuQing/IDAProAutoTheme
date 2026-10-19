@@ -69,10 +69,32 @@ IDA 9.x 的主题是 CSS，不是注册表里那套老彩蛋：
 - 轮询是 1 秒一次读注册表，开销可以忽略；没有用 `WM_SETTINGCHANGE`，因为该消息的 lParam 判断在不同 Windows 版本上不稳定。
 - 只测过 Windows + IDA 9.5。Linux/macOS 的路径和平台宏已在代码里处理，但未实测。
 
+## 发布到官方插件市场（plugins.hex-rays.com）
+
+**不需要提交表单**。Hex-Rays 已经把流程改成自助收录：一个索引器每天扫一遍 GitHub，找出带 `ida-plugin.json` 的仓库，读取其 Release，自动收录上架。
+
+满足三个条件即可：
+
+1. 仓库里有格式正确的 `ida-plugin.json` —— 就是 `src/ida-plugin.json`（`entryPoint` 必须与它同目录，所以这个文件放在 `src/` 而不是仓库根）
+2. 打 tag 并发一个 GitHub Release
+3. 等索引器跑（每天一次）
+
+纯 Python 插件可以直接拿 GitHub 自动附带的源码归档当插件包，不需要另外打 zip。
+
+校验元数据（可选，但能省掉一次失败的收录）：
+
+```bash
+pip install ida-hcli
+hcli plugin lint ./src
+```
+
+几天后还没出现在 <https://plugins.hex-rays.com> 的话，按这个顺序查：元数据格式 → <https://github.com/HexRaysSA/plugin-repository/blob/v1/plugin-repository.json> 里有没有你 → 仓库能否被 GitHub code search 搜到（`path:**/ida-plugin.json`）→ 都不行就把仓库加进 `known-repositories.txt`，或直接开 issue。
+
 ## 文件
 
 ```
 src/IDAAutoTheme.py   插件本体（单文件，含 CSS 展开器）
+src/ida-plugin.json   Plugin Manager 元数据（发布到官方市场用）
 _probe/check2.py      语义一致性验证：自研展开器 vs IDA 原生 QSS
 _probe/check4.py      校验插件是否出现在 Edit > Plugins 菜单
 README.md             中文文档
