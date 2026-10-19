@@ -1,5 +1,7 @@
 # IDA Auto Theme
 
+[English](README.en.md) | **简体中文**
+
 让 IDA Pro 9.x 跟随 Windows 的亮/暗模式自动切换主题，**不用重启 IDA**。
 
 针对 IDA 9.5 开发和验证（Win32 / x64 / IDA Professional 9.5b1）。
@@ -73,7 +75,8 @@ IDA 9.x 的主题是 CSS，不是注册表里那套老彩蛋：
 src/IDAAutoTheme.py   插件本体（单文件，含 CSS 展开器）
 _probe/check2.py      语义一致性验证：自研展开器 vs IDA 原生 QSS
 _probe/check4.py      校验插件是否出现在 Edit > Plugins 菜单
-README.md
+README.md             中文文档
+README.en.md          英文文档
 ```
 
 ## 自定义主题示例
