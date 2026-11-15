@@ -1,11 +1,17 @@
 {
+  "$schema": "https://hcli.docs.hex-rays.com/schemas/ida-plugin.json",
   "IDAMetadataDescriptorVersion": 1,
   "plugin": {
     "name": "IDAAutoTheme",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "entryPoint": "IDAAutoTheme.py",
     "idaVersions": [
-      ">=9.0"
+      "9.0",
+      "9.1",
+      "9.2",
+      "9.3",
+      "9.4",
+      "9.5"
     ],
     "platforms": [
       "windows-x86_64"
